@@ -1,0 +1,104 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*  */
+  font-family: Graphik, Open Sans, Arial, sans-serif;
+}
+
+/* body {
+  -webkit-font-smoothing: antialiased;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  direction: ltr;
+  font-variant-numeric: lining-nums;
+  -ms-font-feature-settings: "lnum" 1;
+  -o-font-feature-settings: "lnum" 1;
+  -webkit-font-feature-settings: "lnum" 1;
+  font-feature-settings: "lnum" 1;
+  background: #f5f5fa;
+  color: #47474f;
+} */
+
+.App-header {
+  text-align: center;
+  background: #f3f0ec;
+  height: 92vh;
+}
+
+.navbar {
+  background: #fff;
+  width: 100vw;
+  height: 60px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(50, 50, 50, 0.3);
+  box-shadow: 0 3px 6px 0 rgba(50, 50, 50, 0.3);
+  padding: 0 24px;
+  /* border: 1px solid red; */
+}
+
+/* .navbar nav {
+  background-color: #fff;
+} */
+
+.navbar nav {
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  height: 60px;
+}
+
+.navbar nav h2 {
+  color: #161616;
+}
+
+button {
+  margin-top: 1.2%;
+  display: inline-flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 80px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #e5322d;
+  padding: 24px 56px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 32px;
+  vertical-align: middle;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 12px;
+  -webkit-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.14);
+  -ms-flex-order: 1;
+  order: 1;
+  max-width: 60vw;
+}
+
+.upload-page button:hover {
+  background-color: #b074c1;
+}
