@@ -1,12 +1,10 @@
-// src/App.js
-import React, { useEffect, useState } from "react";
-// import "./App.css";
+import React, { useState } from "react";
+
 import FileUploadButton from "./FileUploadButton";
 import mammoth from "mammoth";
 import Navbar from "./components/Navbar";
 import Skeleton from "react-loading-skeleton";
-// import DynamicDiagnosisTable from "./components/Response";
-// import pdf from "pdf-parse";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -131,154 +129,148 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   if (selectedFile) {
-  //     PostFetchData();
-  //   }
-  // }, [selectedFile]);
-
   return (
     <div className="App">
       <Navbar />
       <header className="App-header">
         <FileUploadButton onFileSelect={handleFileSelect} />
         {selectedFile && <p>Selected File: {selectedFile.name}</p>}
-
-        {resultData.length === 0 ? (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr>
-                <th style={{ borderBottom: "2px solid #ddd", padding: "8px" }}>
-                  <Skeleton height={20} />
-                </th>
-                <th style={{ borderBottom: "2px solid #ddd", padding: "8px" }}>
-                  <Skeleton height={20} />
-                </th>
-                <th style={{ borderBottom: "2px solid #ddd", padding: "8px" }}>
-                  <Skeleton height={20} />
-                </th>
-                <th style={{ borderBottom: "2px solid #ddd", padding: "8px" }}>
-                  <Skeleton height={20} />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {[1, 2, 3].map((index) => (
-                <tr key={index}>
-                  <td
-                    style={{ borderBottom: "1px solid #ddd", padding: "8px" }}
+        <div style={{ padding: "15px 10px" }}>
+          {resultData.length === 0 ? (
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                // border: "2px solid black",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th
+                    style={{
+                      border: "1px solid #00bfff",
+                      padding: "8px",
+                    }}
                   >
                     <Skeleton height={20} />
-                  </td>
-                  <td
-                    style={{ borderBottom: "1px solid #ddd", padding: "8px" }}
+                  </th>
+                  <th
+                    style={{
+                      border: "1px solid #00bfff",
+                      padding: "8px",
+                    }}
                   >
                     <Skeleton height={20} />
-                  </td>
-                  <td
-                    style={{ borderBottom: "1px solid #ddd", padding: "8px" }}
+                  </th>
+                  <th
+                    style={{
+                      border: "1px solid #00bfff",
+                      padding: "8px",
+                    }}
                   >
                     <Skeleton height={20} />
-                  </td>
-                  <td
-                    style={{ borderBottom: "1px solid #ddd", padding: "8px" }}
+                  </th>
+                  <th
+                    style={{
+                      border: "1px solid #00bfff",
+                      padding: "8px",
+                    }}
                   >
                     <Skeleton height={20} />
-                  </td>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          // Render the actual data when loading is false
-          <table
-            style={{
-              border: "2px solid black",
-              borderCollapse: "collapse",
-              width: "100%",
-              textAlign: "left",
-            }}
-          >
-            {/* ... (your table headers) */}
-            <tbody>
-              {resultData.map((entry, index) => (
-                <tr key={index}>{/* ... (your table data cells) */}</tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+              </thead>
+              <tbody>
+                {[1, 2, 3].map((index) => (
+                  <tr key={index}>
+                    <td
+                      style={{
+                        border: "1px solid #00bfff",
+                        padding: "8px",
+                      }}
+                    >
+                      <Skeleton height={20} />
+                    </td>
+                    <td
+                      style={{
+                        border: "1px solid #00bfff",
+                        padding: "8px",
+                      }}
+                    >
+                      <Skeleton height={20} />
+                    </td>
+                    <td
+                      style={{
+                        border: "1px solid #00bfff",
+                        padding: "8px",
+                      }}
+                    >
+                      <Skeleton height={20} />
+                    </td>
+                    <td
+                      style={{
+                        border: "1px solid #00bfff",
+                        padding: "8px",
+                      }}
+                    >
+                      <Skeleton height={20} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            // Render the actual data when loading is false
+            <table
+              style={{
+                border: "2px solid black",
+                borderCollapse: "collapse",
+                width: "100%",
+                textAlign: "left",
+              }}
+            >
+              {/* ... (your table headers) */}
+
+              <thead>
+                <tr>
+                  <th style={{ border: "2px solid black", padding: "8px" }}>
+                    Visit Date
+                  </th>
+                  <th style={{ border: "2px solid black", padding: "8px" }}>
+                    Diagnosis Name
+                  </th>
+                  <th style={{ border: "2px solid black", padding: "8px" }}>
+                    ICD-10 Code
+                  </th>
+                  <th style={{ border: "2px solid black", padding: "8px" }}>
+                    Treatment
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {resultData.map((entry, index) => (
+                  <tr key={index}>
+                    <td style={{ border: "2px solid black", padding: "8px" }}>
+                      {entry["Visit Date"]}
+                    </td>
+                    <td style={{ border: "2px solid black", padding: "8px" }}>
+                      {entry["Diagnosis Name"]}
+                    </td>
+                    <td style={{ border: "2px solid black", padding: "8px" }}>
+                      {entry["ICD-10 Code"]}
+                    </td>
+                    <td style={{ border: "2px solid black", padding: "8px" }}>
+                      {entry["Treatment"]}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
       </header>
     </div>
   );
 }
 
 export default App;
-
-// // src/App.js
-// import React, { useEffect, useState } from "react";
-// // import "./App.css";
-// import FileUploadButton from "./FileUploadButton";
-// import mammoth from "mammoth";
-// import Navbar from "./components/Navbar";
-// // import DynamicDiagnosisTable from "./components/Response";
-// // import pdf from "pdf-parse";
-
-// function App() {
-//   const [selectedFile, setSelectedFile] = useState(null);
-//   const [extractData, setExtractData] = useState(null);
-
-//   // For DOCX files
-// const extractDocxData = async (docxFile) => {
-//   console.log("object");
-//   const reader = new FileReader();
-//   reader.onload = async () => {
-//     const content = reader.result;
-//     console.log("content --", content);
-//     const result = await mammoth.extractRawText({ arrayBuffer: content });
-//     const text = result.value;
-
-//     const regex = /Reason for Appointment|Office Visit/i; // Corrected regex pattern
-
-//     const match = text.match(regex); // Find the "Reason" or "Office Visit" keyword
-
-//     if (match) {
-//       const index = match.index; // Get the starting index of the match
-//       const resultString = text.slice(index); // Extract the portion of the string from "Reason" or "Office Visit" onwards
-//       console.log(resultString);
-//       setExtractData(resultString);
-//     } else {
-//       console.log("Word 'Reason' or 'Office Visit' not found in the string.");
-//     }
-//     // console.log("text --", text.indexOf("diarrhea") !== -1);
-//   };
-//   reader.readAsArrayBuffer(docxFile);
-// };
-
-//   const handleFileSelect = async (file) => {
-//     setSelectedFile(file);
-//     if (file) {
-//       if (
-//         file.type ===
-//         "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-//       ) {
-//         console.log("file type is doc");
-//         await extractDocxData(file);
-//       } else {
-//         console.error("Unsupported file format");
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="App">
-//       <Navbar />
-//       <header className="App-header">
-//         <FileUploadButton onFileSelect={handleFileSelect} />
-//         {selectedFile && <p>Selected File: {selectedFile.name}</p>}
-//         {extractData}
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
