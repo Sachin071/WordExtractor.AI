@@ -110,7 +110,7 @@ function App() {
           role: "user",
           content:
             filteredText +
-            "Prompt: From a medical document with sections like HPI, ASSESSMENT, PATIENT ACTIVE PROBLEM LIST, PHYSICAL EXAM, PAST HISTORY, PROBLEM LIST, etc., extract diagnosis details including the diagnosis name, ICD-10 code, treatment, and visit date from each section. Present this information in a table format.",
+            " Prompt: From a medical document with sections like HPI, ASSESSMENT, PATIENT ACTIVE PROBLEM LIST, PHYSICAL EXAM, PAST HISTORY, PROBLEM LIST, etc., extract complete diagnosis details including the diagnosis name, ICD-10 code, treatment, and visit date from each section. Present this information in a table format. table should be complete and dont include anything other than table in response",
         },
       ],
     });
