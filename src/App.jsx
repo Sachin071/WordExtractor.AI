@@ -5,6 +5,10 @@ import mammoth from "mammoth";
 import Navbar from "./components/Navbar";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+// import jsPDF from "jspdf";
+// import WebViewer from "@pdftron/webviewer";
+import html2pdf from "html2pdf.js";
+import { saveAs } from "file-saver";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -14,6 +18,52 @@ function App() {
 
   // Create a reference to the div you want to print
   const printableDivRef = useRef(null);
+
+  // Function to trigger the download of the content as a PDF
+  const handleDownloadAsPDF = () => {
+    const printableDiv = printableDivRef.current;
+
+    if (printableDiv) {
+      const pdfOptions = {
+        margin: 10,
+        filename: "document.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      };
+
+      html2pdf()
+        .from(printableDiv)
+        .set(pdfOptions)
+        .outputPdf((pdf) => {
+          const blob = new Blob([pdf], { type: "application/pdf" });
+          saveAs(blob, "document.pdf");
+        });
+    }
+  };
+
+  // Function to trigger the download of the content as a DOC
+  const handleDownloadAsDOC = () => {
+    // Create a new window to open the content as a data URL
+    const printableDiv = printableDivRef.current;
+
+    if (printableDiv) {
+      const content = printableDiv.innerHTML;
+      const dataUri =
+        "data:text/doc;charset=UTF-8," + encodeURIComponent(content);
+      saveAs(dataUri, "document.doc");
+    }
+  };
+
+  // const handleDownloadPDF = () => {
+  //   const pdf = new jsPDF();
+  //   const printableDiv = printableDivRef.current;
+
+  //   if (printableDiv) {
+  //     pdf.text(printableDiv, 15, 15);
+  //     pdf.save("document.pdf");
+  //   }
+  // };
 
   // Function to trigger the print dialog
   // const handlePrint = () => {
@@ -48,7 +98,7 @@ function App() {
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
       "Authorization",
-      "Bearer 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"
+      "Bearer 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"
     );
 
     // console.log("daaa", extractData);
@@ -278,66 +328,90 @@ function App() {
             ) : (
               // Render the actual data when loading is false
               <>
-                <table
-                  ref={printableDivRef}
-                  style={{
-                    border: "2px solid black",
-                    borderCollapse: "collapse",
-                    width: "100%",
-                    textAlign: "left",
-                  }}
-                >
-                  {/* ... (your table headers) */}
+                <div ref={printableDivRef}>
+                  <table
+                    style={{
+                      border: "2px solid black",
+                      borderCollapse: "collapse",
+                      width: "100%",
+                      textAlign: "left",
+                    }}
+                  >
+                    {/* ... (your table headers) */}
 
-                  <thead>
-                    <tr>
-                      {headers.map((header) => (
-                        <th
-                          style={{ border: "2px solid black", padding: "8px" }}
-                          key={header}
-                        >
-                          {header}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {resultData.map((entry, index) => (
-                      <tr key={index}>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        ></td>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        >
-                          {entry["Visit Date"]}
-                        </td>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        >
-                          {entry["Diagnosis Name"]}
-                        </td>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        >
-                          {entry["ICD-10 Code"]}
-                        </td>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        >
-                          {entry["Treatment"]}
-                        </td>
-                        <td
-                          style={{ border: "2px solid black", padding: "8px" }}
-                        >
-                          {entry["Section"]}
-                        </td>
+                    <thead>
+                      <tr>
+                        {headers.map((header) => (
+                          <th
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                            key={header}
+                          >
+                            {header}
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <button onClick={handlePrint}>Print</button>{" "}
+                    </thead>
+
+                    <tbody>
+                      {resultData.map((entry, index) => (
+                        <tr key={index}>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          ></td>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          >
+                            {entry["Visit Date"]}
+                          </td>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          >
+                            {entry["Diagnosis Name"]}
+                          </td>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          >
+                            {entry["ICD-10 Code"]}
+                          </td>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          >
+                            {entry["Treatment"]}
+                          </td>
+                          <td
+                            style={{
+                              border: "2px solid black",
+                              padding: "8px",
+                            }}
+                          >
+                            {entry["Section"]}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {/* <button onClick={handlePrint}>Print</button>{" "} */}
+                </div>
+                {/* <button onClick={handleDownloadAsPDF}>Download as PDF</button>
+                <button onClick={handleDownloadAsDOC}>Download as DOC</button> */}
               </>
             )}
           </div>

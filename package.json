@@ -11,6 +11,10 @@
     "host": "vite --host"
   },
   "dependencies": {
+    "@pdftron/webviewer": "^10.4.0",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
     "mammoth": "^1.6.0",
     "pdf-parse": "^1.1.1",
     "react": "^18.2.0",
